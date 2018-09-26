@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Тест{% endblock %}
+
+
+{% block content %}
+<style type="text/css">
+    object { border: 3px solid #FFFFFF;}
+</style>
+<center>
+<br><br>
+<table>
+<tr><td>
+</tr></td>
+</table>
+<object type="application/x-shockwave-flash" id="flashcontent"
+    data="{{ url_for('static', filename='ImplicitTest.swf') }}"
+    width="500" height="400">
+    <param name="movie" value="{{ url_for('static', filename='ImplicitTest.swf') }}" />
+    <param name="quality" value="high"/>
+      <param name=FlashVars value="settingsPath={{ url_for('static', filename='test.json') }}&collectorPath={{ url_for('implicit.test') }}" />
+</object>
+</center>
+{% endblock %}
+

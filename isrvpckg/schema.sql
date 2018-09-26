@@ -1,0 +1,17 @@
+DROP TABLE IF EXISTS personal;
+DROP TABLE IF EXISTS test;
+
+CREATE TABLE personal (
+	id TEXT PRIMARY KEY,
+	age INTEGER NOT NULL,
+	earnings INTEGER NOT NULL,
+	employment TEXT NOT NULL	
+);
+CREATE TABLE test (
+	word TEXT NOT NULL,
+	rule TEXT NOT NULL,
+	time TEXT NOT NULL,
+	correct INTEGER NOT NULL,
+	sessionid TEXT NOT NULL,
+	FOREIGN KEY(sessionid) REFERENCES personal(id)
+);
