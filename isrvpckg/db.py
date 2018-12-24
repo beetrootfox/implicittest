@@ -1,13 +1,14 @@
 import sqlite3
-
+import json
 import click
-from flask import current_app, g
+from flask import current_app, g, url_for
 from flask.cli import with_appcontext
 
 
 def init_app(app):
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
+    app.cli.add_command(link_resources_command)
 
 def init_db():
     db = get_db()
@@ -19,8 +20,23 @@ def init_db():
 @with_appcontext
 def init_db_command():
     """Clear the existing data and create new tables."""
+
     init_db()
     click.echo('Initialized the database.')
+
+@click.command('link-resources')
+@with_appcontext
+def link_resources_command():
+    """Replace filenames of images with links."""
+
+    with open('/home/ubuntu/implicittest/isrvpckg/static/test.json', 'r+', encoding='utf8') as f:
+        click.echo(current_app.config)
+        data = json.load(f)
+        print(url_for('static', filename='test.json'))
+        data['concept1']['words'].append(url_for('static', filename='test.json', _external=True))
+        f.seek(0)
+        json.dump(data, f, ensure_ascii=False)
+        f.truncate()
 
 def get_db():
     if 'db' not in g:
