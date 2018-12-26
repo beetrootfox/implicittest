@@ -29,11 +29,10 @@ def init_db_command():
 def link_resources_command():
     """Replace filenames of images with links."""
 
-    with open('/home/ubuntu/implicittest/isrvpckg/static/test.json', 'r+', encoding='utf8') as f:
-        click.echo(current_app.config)
+    with open('/home/ubuntu/implicittest/isrvpckg/static/test.json', 'r+', encoding='utf-8-sig') as f:
         data = json.load(f)
-        print(url_for('static', filename='test.json'))
-        data['concept1']['words'].append(url_for('static', filename='test.json', _external=True))
+        new_items = [url_for('static', filename=i) for i in data['items']]
+        data['items'] = new_items
         f.seek(0)
         json.dump(data, f, ensure_ascii=False)
         f.truncate()
