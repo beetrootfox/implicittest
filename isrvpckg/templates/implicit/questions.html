@@ -8,27 +8,36 @@
 
 {% block content %}
   <form method="post">
-    <label for="age">Age</label>
-    <select name="age" id="age" required>
-    {% for i in range(1,120) %}
-        <option value="{{ i }}">{{ i }}</option>
-    {% endfor %}
+    <label for="epi">Я покупаю в Эпицентре</label>
+    <select name="epi" id="epi" required>
+	<option value="0">Никогда</option>
+	<option value="1">Раз в несколько лет</option>
+	<option value="2">Раз в год</option>
+	<option value="3">2-3 раза в год</option>
+	<option value="4">Каждый месяц</option>
     </select>
     <br/>
     <br/>
-    <label for="earnings">Monthly earnings</label>
-    <input name="earnings" id="earnings" required>
-    <br/>
-    <br/>
-    <label for="employment">Current employment status</label>
-    <select name="employment" id="employment" required>
-        <option value="unemployed">Unemployed</option>
-	<option value="study">Studying</option>
-	<option value="blue">Blue colar work</option>
-	<option value="white">White colar work</option>
+    <label for="comfy">Я покупаю в Comfy</label>
+    <select name="comfy" id="comfy" required>
+        <option value="0">Никогда</option>
+        <option value="1">Раз в несколько лет</option>
+        <option value="2">Раз в год</option>
+        <option value="3">2-3 раза в год</option>
+        <option value="4">Каждый месяц</option>
     </select>
     <br/>
     <br/>
-    <input type="submit" value="Submit form and begin test">
+    <label for="rozetka">Я покупаю в Rozetka</label>
+    <select name="rozetka" id="rozetka" required>
+        <option value="0">Никогда</option>
+        <option value="1">Раз в несколько лет</option>
+        <option value="2">Раз в год</option>
+        <option value="3">2-3 раза в год</option>
+        <option value="4">Каждый месяц</option>
+    </select>
+    <br/>
+    <br/>
+    <input type="submit" value="Отправить данные и начать тестирование">
   </form>
 {% endblock %}

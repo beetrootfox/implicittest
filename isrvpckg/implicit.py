@@ -18,20 +18,21 @@ def index():
 @bp.route('/questions', methods=('GET', 'POST'))
 def questions():
     if request.method == 'POST':
-        age = request.form['age']
-        earnings = request.form['earnings']
-        employment = request.form['employment']
+        print("FORM: {}".format(request.form))
+        epi = request.form['epi']
+        comfy = request.form['comfy']
+        rozetka = request.form['rozetka']
         db = get_db()
         error = None
 
-        if age is None or earnings is None or employment is None:
+        if rozetka is None or comfy is None or epi is None:
             flash("All form fields must be filled.")
         else:
             sid = urandom(32)
-            print ("AGE: {}, sid: {}".format(age, sid))
+            print ("DATA: {} {} {} {}".format(sid, epi, comfy, rozetka))
             db.execute(
-                'INSERT INTO personal (id, age, earnings, employment) VALUES (?, ?, ?, ?)',
-                (sid, age, earnings, employment)
+                'INSERT INTO personal (id, epi, comfy, rozetka) VALUES (?, ?, ?, ?)',
+                (sid, epi, comfy, rozetka)
             )
             db.commit()
             session.clear()
@@ -48,8 +49,8 @@ def test():
         db = get_db()
         for record in json:
             db.execute(
-                'INSERT INTO test (word, rule, time, correct, sessionid) VALUES (?, ?, ?, ?, ?)',
-                (record['word'], record['rule'], record['time'], record['correct'], session['user_id'])
+                'INSERT INTO test (item, attribute, time, sessionid) VALUES (?, ?, ?, ?)',
+                (record['item'], record['attribute'], record['time'], session['user_id'])
             )
         db.commit()
         session.clear()
