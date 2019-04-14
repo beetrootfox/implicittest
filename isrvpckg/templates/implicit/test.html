@@ -13,11 +13,11 @@
 </tr></td>
 </table>
 <object type="application/x-shockwave-flash" id="flashcontent"
-    data="{{ url_for('static', filename='ImplicitTest.swf') }}"
-    width="500" height="400">
-    <param name="movie" value="{{ url_for('static', filename='ImplicitTest.swf') }}" />
+    data="{{ url_for('static', filename='SemanticPriming.swf') }}"
+    width="700" height="600">
+    <param name="movie" value="{{ url_for('static', filename='SemanticPriming.swf') }}" />
     <param name="quality" value="high"/>
-      <param name=FlashVars value="settingsPath={{ url_for('static', filename='test.json') }}&collectorPath={{ url_for('implicit.test') }}" />
+    <param name=FlashVars value="settingsPath={{ url_for('static', filename='test.json') }}&collectorPath={{ url_for('implicit.test') }}" />
 </object>
 </center>
 {% endblock %}

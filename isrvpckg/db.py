@@ -31,11 +31,15 @@ def link_resources_command():
 
     with open('/home/ubuntu/implicittest/isrvpckg/static/test.json', 'r+', encoding='utf-8-sig') as f:
         data = json.load(f)
-        new_items = [url_for('static', filename=i) for i in data['items']]
-        data['items'] = new_items
+        _make_url(data, 'testItems')
+        _make_url(data, 'items')
         f.seek(0)
         json.dump(data, f, ensure_ascii=False)
         f.truncate()
+
+def _make_url(data, key):
+    new_items = [url_for('static', filename=i) for i in data[key]]
+    data[key] = new_items
 
 def get_db():
     if 'db' not in g:
